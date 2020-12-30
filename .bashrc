@@ -36,7 +36,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -50,7 +50,10 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    ## Ubuntu default:	
+    # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    ## Custom, details below
+    PS1='${debian_chroot:+($debian_chroot)}\[\e[0m\e[38;5;39m\]\u@\h \[\e[38;5;11m\]\d \[\e[38;5;10m\]\@ \[\e[38;5;208m\]\w\n\[\e[m\] \$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -101,5 +104,11 @@ fi
 
 #custom things
 
-#from a comment in https://opensource.com/article/19/9/linux-terminal-colors
-export PS1="\[\e[0m\e[38;5;39m\]\u@\h \[\e[38;5;11m\]\d \[\e[38;5;10m\]\@ \[\e[38;5;208m\]\w\n\[\e[m\] $ " 
+## Look at https://www.ibm.com/developerworks/linux/library/l-tip-prompt/
+## from a comment in https://opensource.com/article/19/9/linux-terminal-colors
+## export PS1="\[\e[0m\e[38;5;39m\]\u@\h \[\e[38;5;11m\]\d \[\e[38;5;10m\]\@ \[\e[38;5;208m\]\w\n\[\e[m\] $ " 
+
+##test 
+# export PS1="\[\e[0m\e[38;5;39m\]\u@\h \[\e[38;5;11m\]\d \[\e[38;5;10m\]\@ \[\e[38;5;208m\]\w\n\[\e[m\] \$ " 
+
+
