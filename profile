@@ -26,6 +26,8 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
+# https://jef.works/blog/2017/08/13/5-useful-bash-aliases-and-functions/
+
 # create .tar.gz 
 targz() { tar -zcvf $1.tar.gz $1; }
 # extra .tar.gz
