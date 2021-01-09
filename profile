@@ -33,4 +33,8 @@ targz() { tar -zcvf $1.tar.gz $1; }
 # extra .tar.gz
 untargz() { tar -zxvf $1; }
 
+# create a folder and cd into it
+mkcd() { mkdir $1 ; cd $1; }
+
 alias nginxlogs='cd /var/log/nginx'
+alias nginxconf='cd /etc/nginx'
