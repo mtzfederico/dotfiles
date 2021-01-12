@@ -38,3 +38,5 @@ mkcd() { mkdir $1 ; cd $1; }
 
 alias nginxlogs='cd /var/log/nginx'
 alias nginxconf='cd /etc/nginx'
+
+alias runserver='gunicorn --bind 0.0.0.0:9080 wsgi:app'
