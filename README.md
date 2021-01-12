@@ -32,3 +32,8 @@ Alias to open the nginx config directory (/etc/nginx)
 ```
 nginxconf
 ```
+
+Alias to run the gunicorn server
+```
+alias runserver='gunicorn --bind 0.0.0.0:9080 wsgi:app'
+```
