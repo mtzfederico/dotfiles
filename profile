@@ -40,3 +40,5 @@ alias nginxlogs='cd /var/log/nginx'
 alias nginxconf='cd /etc/nginx'
 
 alias runserver='gunicorn --bind 0.0.0.0:9080 wsgi:app'
+
+alias webdir='cd /var/www/'

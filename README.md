@@ -37,3 +37,8 @@ Alias to run the gunicorn server (gunicorn --bind 0.0.0.0:9080 wsgi:app)
 ```
 runserver
 ```
+
+Alias to open the web files directory (/var/www)
+```
+webdir
+```
