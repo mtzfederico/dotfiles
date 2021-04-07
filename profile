@@ -42,3 +42,6 @@ alias nginxconf='cd /etc/nginx'
 alias runserver='gunicorn --bind 0.0.0.0:9080 wsgi:app'
 
 alias webdir='cd /var/www/'
+
+# Add an if here to change the command in different systems
+alias temp='/opt/vc/bin/vcgencmd measure_temp'
