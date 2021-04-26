@@ -45,3 +45,6 @@ alias webdir='cd /var/www/'
 
 # Add an if here to change the command in different systems
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
+
+# Make shred replace the files with zeros by default. https://www.geeksforgeeks.org/shred-command-in-linux-with-examples/
+alias shred='shred -z'
