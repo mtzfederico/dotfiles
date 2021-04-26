@@ -43,7 +43,7 @@ Alias to open the web files directory (/var/www)
 webdir
 ```
 
-Alias make shred replace the file with zeros after shreding
+Alias make shred replace the file with zeros after shreding and then deletes the file
 ```
-shred <filename> (runs shred -z <filename>)
+shred <filename> (runs shred -z -u <filename>)
 ```
