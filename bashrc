@@ -111,4 +111,8 @@ fi
 ##test 
 # export PS1="\[\e[0m\e[38;5;39m\]\u@\h \[\e[38;5;11m\]\d \[\e[38;5;10m\]\@ \[\e[38;5;208m\]\w\n\[\e[m\] \$ " 
 
-
+## https://github.com/nvbn/thefuck
+## Run 'fuck' to fix the previous command that you typed
+eval $(thefuck --alias)
+# You can use whatever you want as an alias, like for Mondays:
+eval $(thefuck --alias FUCK)
