@@ -113,9 +113,11 @@ fi
 
 ## https://github.com/nvbn/thefuck
 ## Run 'fuck' to fix the previous command that you typed
-eval $(thefuck --alias)
-# You can use whatever you want as an alias, like for Mondays:
-eval $(thefuck --alias FUCK)
+if command -v thefuck &> /dev/null; then
+	eval $(thefuck --alias)
+	# You can use whatever you want as an alias, like for Mondays:
+	eval $(thefuck --alias FUCK)
+fi
 
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
 	export WORKON_HOME=$HOME/.virtualenvs
