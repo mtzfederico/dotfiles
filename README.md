@@ -47,3 +47,8 @@ Alias to make shred replace the file with zeros after shreding and then deletes 
 ```
 shred <filename> (runs shred -zu <filename>)
 ```
+
+To load the git cheat sheet (cheat.sh/git)
+```
+gitcheat
+```
