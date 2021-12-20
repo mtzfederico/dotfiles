@@ -52,3 +52,8 @@ To load the git cheat sheet (cheat.sh/git)
 ```
 gitcheat
 ```
+
+Check ports listening
+```
+checkports
+```

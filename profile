@@ -53,3 +53,6 @@ alias shred='shred -zu'
 gitcheat() {
 curl https://cheat.sh/git
 }
+
+# To check the ports that are listening
+alias checkports='sudo lsof -i -P -n | grep LISTEN'
