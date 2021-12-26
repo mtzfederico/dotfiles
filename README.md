@@ -57,3 +57,8 @@ Check ports listening
 ```
 checkports
 ```
+
+Runs apt update, upgrade, and autoremove
+```
+updatesys
+```
