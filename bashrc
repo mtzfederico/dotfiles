@@ -129,3 +129,5 @@ fi
 ## https://github.com/keybase/keybase-issues/issues/2798
 ## https://unix.stackexchange.com/questions/257061/gentoo-linux-gpg-encrypts-properly-a-file-passed-through-parameter-but-throws-i/257065#257065
 export GPG_TTY=$(tty)
+
+export PATH=$PATH:/usr/local/go/bin
