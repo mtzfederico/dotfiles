@@ -131,5 +131,3 @@ fi
 export GPG_TTY=$(tty)
 
 export PATH=$PATH:/usr/local/go/bin
-
-. "/home/fedemtz/.acme.sh/acme.sh.env"
