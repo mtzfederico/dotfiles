@@ -43,6 +43,8 @@ alias runserver='gunicorn --bind 0.0.0.0:9080 wsgi:app'
 
 alias webdir='cd /var/www/'
 
+alias myip='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short'
+
 # Add an if here to change the command in different systems
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
 
