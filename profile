@@ -59,7 +59,7 @@ curl https://cheat.sh/git
 }
 
 # To check the ports that are listening
-alias checkports='sudo lsof -i -P -n | grep LISTEN'
+alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
 
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 RED='\033[0;31m'
