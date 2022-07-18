@@ -61,6 +61,14 @@ curl https://cheat.sh/git
 # To check the ports that are listening
 alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
 
+# To check the active outgoing connections
+# https://unix.stackexchange.com/questions/56453/how-can-i-monitor-all-outgoing-requests-connections-from-my-machine
+alias checkconnections='netstat -nputw'
+
+rnginx() {
+sudo nginx -t && sudo systemctl restart nginx 
+}
+
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 RED='\033[0;31m'
 BLUE='\033[0;34m'
