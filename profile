@@ -47,6 +47,8 @@ alias myip='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short'
 alias myip4='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -4'
 alias myip6='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6'
 
+alias dnsip='dig TXT o-o.myaddr.l.google.com +short'
+
 # Add an if here to change the command in different systems
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
 
