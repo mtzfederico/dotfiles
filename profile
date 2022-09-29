@@ -76,5 +76,12 @@ RED='\033[0;31m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
+checkRebootRequired() {
+if [ -f /var/run/reboot-required ]; then
+  echo -e '${RED}***reboot required***${NC}\n${BLUE}Packages that require reboot:${NC}'
+  cat /var/run/reboot-required.pkgs
+fi
+}
+
 # command to update the system
-updatesys() { echo -e "${BLUE}Running sudo apt update${NC}" && sudo apt update && echo -e "${BLUE}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${BLUE}Running sudo apt autoremove${NC}" && sudo apt autoremove; }
+updatesys() { echo -e "${BLUE}Running sudo apt update${NC}" && sudo apt update && echo -e "${BLUE}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${BLUE}Running sudo apt autoremove${NC}" && sudo apt autoremove && checkRebootRequired; }
