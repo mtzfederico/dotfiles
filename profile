@@ -78,7 +78,7 @@ NC='\033[0m' # No Color
 
 checkRebootRequired() {
 if [ -f /var/run/reboot-required ]; then
-  echo -e '${RED}***reboot required***${NC}\n${BLUE}Packages that require reboot:${NC}'
+  echo -e "${RED}***reboot required***${NC}\n${BLUE}Packages that require reboot:${NC}"
   cat /var/run/reboot-required.pkgs
 fi
 }
