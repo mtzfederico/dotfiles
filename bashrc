@@ -134,3 +134,4 @@ export PATH=$PATH:/usr/local/go/bin
 . "/root/.acme.sh/acme.sh.env"
 
 export MAIL=~/Maildir
+. "$HOME/.cargo/env"

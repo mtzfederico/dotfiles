@@ -85,3 +85,4 @@ fi
 
 # command to update the system
 updatesys() { echo -e "${BLUE}Running sudo apt update${NC}" && sudo apt update && echo -e "${BLUE}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${BLUE}Running sudo apt autoremove${NC}" && sudo apt autoremove && checkRebootRequired; }
+. "$HOME/.cargo/env"
