@@ -58,7 +58,11 @@ alias shred='shred -zu'
 # To load the git cheat sheet
 gitcheat() {
 curl https://cheat.sh/git
+echo -e "\n" # for a newline
 }
+
+# dinopass.com API for strong password
+alias dpass='curl -w "\n" https://www.dinopass.com/password/strong'
 
 # To check the ports that are listening
 alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
