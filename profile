@@ -76,6 +76,8 @@ rnginx() {
 sudo nginx -t && sudo systemctl restart nginx 
 }
 
+alias mtr='mtr --show-ips --aslookup --report-wide'
+
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 RED='\033[0;31m'
 BLUE='\033[0;34m'
