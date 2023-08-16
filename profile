@@ -36,9 +36,12 @@ untargz() { tar -zxvf $1; }
 # create a folder and cd into it
 mkcd() { mkdir $1 ; cd $1; }
 
+alias cd..='cd ..'
+
 alias nginxlogs='cd /var/log/nginx'
 alias nginxconf='cd /etc/nginx'
 
+alias hugostart='hugo server --bind=192.168.53.53 --baseURL=http://192.168.53.53 --port=1313'
 alias runserver='gunicorn --bind 0.0.0.0:9080 wsgi:app'
 
 alias webdir='cd /var/www/'
