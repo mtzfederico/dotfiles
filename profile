@@ -53,7 +53,7 @@ alias myip6='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6'
 alias dnsip='dig TXT o-o.myaddr.l.google.com +short'
 
 # Add an if here to change the command in different systems
-alias temp='/opt/vc/bin/vcgencmd measure_temp'
+alias temp='vcgencmd measure_temp'
 
 # Make shred replace the files with zeros by default. https://www.geeksforgeeks.org/shred-command-in-linux-with-examples/
 alias shred='shred -zu'
@@ -77,6 +77,10 @@ alias checkconnections='netstat -nputw'
 
 rnginx() {
 sudo nginx -t && sudo systemctl restart nginx 
+}
+
+function http(){
+    curl http://httpcode.info/$1;
 }
 
 alias mtr='mtr --show-ips --aslookup --report-wide'
