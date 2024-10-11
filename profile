@@ -87,7 +87,8 @@ alias mtr='mtr --show-ips --aslookup --report-wide'
 
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 RED='\033[0;31m'
-BLUE='\033[0;34m'
+# BLUE='\033[0;34m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 checkRebootRequired() {
@@ -98,5 +99,5 @@ fi
 }
 
 # command to update the system
-updatesys() { echo -e "${BLUE}Running sudo apt update${NC}" && sudo apt update && echo -e "${BLUE}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${BLUE}Running sudo apt autoremove${NC}" && sudo apt autoremove && checkRebootRequired; }
-. "$HOME/.cargo/env"
+updatesys() { echo -e "${CYAN}Running sudo apt update${NC}" && sudo apt update && echo -e "${CYAN}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${CYAN}Running sudo apt autoremove${NC}" && sudo apt autoremove && checkRebootRequired; }
+
