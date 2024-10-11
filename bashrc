@@ -133,6 +133,16 @@ fi
 export GPG_TTY=$(tty)
 
 export PATH=$PATH:/usr/local/go/bin
-. "/root/.acme.sh/acme.sh.env"
+
+# 
+if [ -d "/root/.acme.sh/acme.sh.env" ] ; then
+    . "/root/.acme.sh/acme.sh.env"
+    ## PATH="$HOME/.local/bin:$PATH"
+fi
+
+#
+if [ -d "$HOME/.cargo/env" ] ; then
+    . "$HOME/.cargo/env"
+fi
 
 export MAIL=~/Maildir
