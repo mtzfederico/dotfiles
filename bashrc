@@ -24,14 +24,16 @@ shopt -s checkwinsize
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # set variable identifying the chroot you work in (used in the prompt below)
+# https://askubuntu.com/questions/372849/what-does-debian-chrootdebian-chroot-do-in-my-terminal-prompt
+# https://unix.stackexchange.com/questions/3171/what-is-debian-chroot-in-bashrc
 if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color) color_prompt=yes;;
-esac
+#case "$TERM" in
+#    xterm-color) color_prompt=yes;;
+#esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
@@ -55,9 +57,14 @@ if [ "$color_prompt" = yes ]; then
     # Custom, details below
     # prev one
     # PS1='${debian_chroot:+($debian_chroot)}\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[0m\]\[\e[38;5;39m\]\h\[\e[0m\] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\n\[\e[m\] \$ '
-    PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
+    [ -z "$debian_chroot" ]; then
+        # when debian_chroot is not defined
+        PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
+    else 
+    PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
+    fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h \d \D{%r} \w\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -132,16 +139,28 @@ fi
 ## https://unix.stackexchange.com/questions/257061/gentoo-linux-gpg-encrypts-properly-a-file-passed-through-parameter-but-throws-i/257065#257065
 export GPG_TTY=$(tty)
 
+# Add go to the path
 export PATH=$PATH:/usr/local/go/bin
 
+# Add go/bin, the default GOPATH, to the path.
+# This is where go install puts binaries
+##if [ -d $HOME/go/bin ]; then
+##    export PATH=$PATH:$HOME/go/bin
+##fi
+
+## Notes on hugo:
+##  When installed from source, it is installed in the GOTPATH: https://gohugo.io/installation/linux/
+##  Downloaded binary is in /usr/local/sbin in the PATH: https://www.brycewray.com/posts/2022/10/how-i-install-hugo/
+## /usr/local/sbin is part of the PATH by default. check /etc/profile
+
 # 
-if [ -d "/root/.acme.sh/acme.sh.env" ] ; then
+if [ -d "/root/.acme.sh/acme.sh.env" ]; then
     . "/root/.acme.sh/acme.sh.env"
     ## PATH="$HOME/.local/bin:$PATH"
 fi
 
 #
-if [ -d "$HOME/.cargo/env" ] ; then
+if [ -d "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
