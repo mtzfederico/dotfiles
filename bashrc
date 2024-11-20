@@ -57,7 +57,7 @@ if [ "$color_prompt" = yes ]; then
     # Custom, details below
     # prev one
     # PS1='${debian_chroot:+($debian_chroot)}\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[0m\]\[\e[38;5;39m\]\h\[\e[0m\] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\n\[\e[m\] \$ '
-    [ -z "$debian_chroot" ]; then
+    if [ -z "$debian_chroot" ]; then
         # when debian_chroot is not defined
         PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
     else 
