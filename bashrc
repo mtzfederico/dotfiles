@@ -59,9 +59,11 @@ if [ "$color_prompt" = yes ]; then
     # PS1='${debian_chroot:+($debian_chroot)}\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[0m\]\[\e[38;5;39m\]\h\[\e[0m\] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\n\[\e[m\] \$ '
     if [ -z "$debian_chroot" ]; then
         # when debian_chroot is not defined
+        # https://askubuntu.com/questions/372849/what-does-debian-chrootdebian-chroot-do-in-my-terminal-prompt
         PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
     else 
-    PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
+    PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \[\e[38;5;39m\]$(__git_ps1 "(%s)")\[\e[0m\] \n \$ '
+    ## PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \n \$ '
     fi
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h \d \D{%r} \w\$ '

@@ -1,6 +1,27 @@
+# https://medium.com/pareture/simplest-zsh-prompt-configs-for-git-branch-name-3d01602a6f33
+# https://gist.github.com/reinvanoyen/05bcfe95ca9cb5041a4eafd29309ff29
+
+# Find and set branch name var if in git repository.
+function git_branch_name() {
+  branch=$(git symbolic-ref HEAD 2> /dev/null | awk 'BEGIN{FS="/"} {print $NF}')
+  if [[ $branch == "" ]];
+  then
+    :
+  else
+    # the leading space is important. It is not in the actual prompt so that when there is no branch, there is no extra space.
+    echo ' %F{39}(git '$branch')%f'
+  fi
+}
+
+# Enable substitution in the prompt.
+setopt prompt_subst
+
+# Sample prompt from url
+# prompt='%2/ $(git_branch_name) > '
+
 #export PROMPT="%10F%m%f:%11F%1~%f \$ "
 
-export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r}%f %F{227}%0~%f %# '
+export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r}%f %F{227}%0~%f$(git_branch_name) %# '
 
 ## Links
 # https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
