@@ -22,3 +22,8 @@ export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r}%f %F{227}%0~%
 
 #PROMPT="%F{39}%n%F{7}@%b%F{39}%m %F{11}$(date +"%a %b %d") %F{10}$(date +"%r") $(echo $darwin_icon)%F{172}%~%f
 # %# " 
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH" ## from brew install mysql-client
