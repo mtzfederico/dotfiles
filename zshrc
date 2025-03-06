@@ -9,7 +9,7 @@ function git_branch_name() {
     :
   else
     # the leading space is important. It is not in the actual prompt so that when there is no branch, there is no extra space.
-    echo ' %F{39}(git '$branch')%f'
+    echo ' %F{39}('$branch')%f'
   fi
 }
 
