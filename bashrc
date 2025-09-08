@@ -169,3 +169,10 @@ if [ -d "$HOME/.cargo/env" ]; then
 fi
 
 export MAIL=~/Maildir
+
+# Print disk usage on login
+# https://unix.stackexchange.com/questions/218613/using-df-h-i-need-to-create-an-bash-script-that-displays-anything-about-60-ut
+# https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+df -hlP  | awk 'int($5)>60{printf "\033[0;31mWarning:\033[0m Partition "$1" only has "$4" free.\nRun df -h to get more details.\n"}'
+
+
