@@ -21,9 +21,30 @@ setopt prompt_subst
 
 #export PROMPT="%10F%m%f:%11F%1~%f \$ "
 
-export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r}%f %F{227}%0~%f$(git_branch_name) %# '
+# %n shows the usernam
+# %m shows the hostname
+# In %D{%a %b %d %r} the values are:
+#   %a is abbreviated weekday acording to current locale
+#   %b is abbreviated month according to current locale
+#   %d is day of month (01..31)
+#   %r is time in 12-hour AM/PM format
+# %0~ is the current working directory, with ~ for home
+# %# is # for root and % for normal user
+
+# | Bash            | Meaning    | Zsh equivalent |
+# | --------------- | ---------- | -------------- |
+# | `\e[38;5;10m`   | green      | `%F{10}`       |
+# | `\e[38;5;11m`   | yellow     | `%F{11}`       |
+# | `\e[0;37m`      | light gray | `%F{249}`       |
+# | `\e[38;5;39m`   | blue/cyan  | `%F{39}`       |
+# | `\e[38;5;208m`  | orange     | `%F{208}`      |
+# | `\e[0m`         | reset      | `%f`           |
+
+export PROMPT='%F{249}[%F{39}%n%F{15}@%F{39}%m%F{249}] %F{11}%D{%a %b %d} %F{10}%D{%r} %F{208}%0~%f$(git_branch_name)
+ %# '
 
 ## Links
+## https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
 # https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html
 # https://sureshjoshi.com/development/zsh-prompts-that-dont-suck#references
 # https://en.wikipedia.org/wiki/ANSI_escape_code#8-bit
