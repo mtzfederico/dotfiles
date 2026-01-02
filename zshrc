@@ -40,8 +40,14 @@ setopt prompt_subst
 # | `\e[38;5;208m`  | orange     | `%F{208}`      |
 # | `\e[0m`         | reset      | `%f`           |
 
-export PROMPT='%F{249}[%F{39}%n%F{15}@%F{39}%m%F{249}] %F{11}%D{%a %b %d} %F{10}%D{%r} %F{208}%0~%f$(git_branch_name)
+if [[ "$(uname -s)" == "Darwin" ]]; then
+  # For macOS
+  export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r}%f %F{227}%0~%f$(git_branch_name) %# '
+else
+  # For other operating systems
+  export PROMPT='%F{249}[%F{39}%n%F{15}@%F{39}%m%F{249}] %F{11}%D{%a %b %d} %F{10}%D{%r} %F{208}%0~%f$(git_branch_name)
  %# '
+ fi
 
 ## Links
 ## https://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html
