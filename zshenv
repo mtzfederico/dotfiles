@@ -19,3 +19,9 @@ curl https://cheat.sh/git
 alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
 
 alias checkallports='sudo lsof -i -P -n || echo "run sudo apt install lsof"'
+
+# For macOS
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    # Flutter SDK path
+    export PATH="/Users/FedeMtz/SDKS/flutter/bin:$PATH"
+ fi
