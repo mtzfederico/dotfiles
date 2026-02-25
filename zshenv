@@ -2,9 +2,13 @@
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:/sbin/:$PATH"
 
-alias myip='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short'
-alias myip4='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -4'
-alias myip6='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6'
+alias myip_dig='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short'
+alias myip4_dig='myip_dig -4'
+alias myip6_dig='myip_dig -6'
+
+alias myip='drill -Q @ns1.google.com TXT o-o.myaddr.l.google.com'
+alias myip4='drill -Q -4 @ns1.google.com TXT o-o.myaddr.l.google.com'
+alias myip6='drill -Q -6 @ns1.google.com TXT o-o.myaddr.l.google.com'
 
 # Check if the cargo env file exists
 if [[ -e "$HOME/.cargo/env" ]]; then
@@ -28,3 +32,4 @@ if [[ "$(uname -s)" == "Darwin" ]]; then
     # Flutter SDK path
     export PATH="/Users/FedeMtz/SDKS/flutter/bin:$PATH"
  fi
+ 
