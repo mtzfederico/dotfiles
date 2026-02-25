@@ -1,4 +1,3 @@
-# source "$HOME/.cargo/env"
 
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:/sbin/:$PATH"
@@ -6,7 +5,11 @@ export PATH="/usr/local/bin:/usr/local/sbin:/sbin/:$PATH"
 alias myip='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short'
 alias myip4='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -4'
 alias myip6='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short -6'
-. "$HOME/.cargo/env"
+
+# Check if the cargo env file exists
+if [[ -e "$HOME/.cargo/env" ]]; then
+    . "$HOME/.cargo/env"
+fi
 
 alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
