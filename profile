@@ -22,16 +22,25 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
 # https://jef.works/blog/2017/08/13/5-useful-bash-aliases-and-functions/
 
-# create .tar.gz 
-targz() { tar -zcvf $1.tar.gz $1; }
-# extra .tar.gz
-untargz() { tar -zxvf $1; }
+compress() {
+    if [ $# -ne 1 ]; then
+        echo "Bad parameters. Only supply item to compress.";
+    fi
+    tar --verbose --create --xz -f $1.tar.xz $1;
+}
+decompress() {
+    if [ $# -ne 1 ]; then
+        echo "Bad parameters. Only supply item to decompress.";
+    fi
+    tar --verbose --extract -f $1;
+}
+tarlist() { tar --list -f $1; }
 
 # create a folder and cd into it
 mkcd() { mkdir $1 ; cd $1; }
