@@ -3,6 +3,9 @@ syntax on
 " https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters 
 set list
 set listchars=tab:>-
+" Set tabs width to 4 spaces
+" https://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces
+set tabstop=4
 " set number
 
 " https://www.vim.org/scripts/script.php?script_id=760
