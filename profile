@@ -30,13 +30,30 @@ fi
 
 compress() {
     if [ $# -ne 1 ]; then
-        echo "Bad parameters. Only supply item to compress.";
+        echo "Bad parameters. Only supply item to compress.\nTo compress a dir use compressDir <dir>";
+    fi
+    xz --verbose --keep -9 $1
+}
+
+decompress() {
+    if [ $# -ne 1 ]; then
+        echo "Bad parameters. Only supply item to decompress.\nTo decompress a dir use decompressDir <dir>.";
+    fi
+    xz --decompress $1
+}
+
+xzlist() { xz --list $1; }
+
+compressDir() {
+    if [ $# -ne 1 ]; then
+        echo "Bad parameters. Only supply directory to compress.\nTo compress a file use compress <file>";
     fi
     tar --verbose --create --xz -f $1.tar.xz $1;
 }
-decompress() {
+
+decompressDir() {
     if [ $# -ne 1 ]; then
-        echo "Bad parameters. Only supply item to decompress.";
+        echo "Bad parameters. Only supply directory to decompress.";
     fi
     tar --verbose --extract -f $1;
 }
