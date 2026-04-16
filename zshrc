@@ -1,3 +1,4 @@
+## zshrc
 # https://medium.com/pareture/simplest-zsh-prompt-configs-for-git-branch-name-3d01602a6f33
 # https://gist.github.com/reinvanoyen/05bcfe95ca9cb5041a4eafd29309ff29
 
@@ -75,10 +76,22 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-if [[ -e "/opt/homebrew/opt/mysql-client/bin" ]]; then
-  export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH" ## from brew install mysql-client
-fi
+alias myip_dig='dig @ns1.google.com TXT o-o.myaddr.l.google.com +short'
+alias myip4_dig='myip_dig -4'
+alias myip6_dig='myip_dig -6'
 
-if [[ -e "$HOME/.local/bin" ]]; then
-  export PATH="$HOME/.local/bin:$PATH"
-fi
+alias myip='drill -Q @ns1.google.com TXT o-o.myaddr.l.google.com'
+alias myip4='drill -Q -4 @ns1.google.com TXT o-o.myaddr.l.google.com'
+alias myip6='drill -Q -6 @ns1.google.com TXT o-o.myaddr.l.google.com'
+
+alias get_idf='. $HOME/esp/esp-idf/export.sh'
+
+# To load the git cheat sheet
+gitcheat() {
+curl https://cheat.sh/git
+}
+
+# To check the ports that are listening
+alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
+
+alias checkallports='sudo lsof -i -P -n || echo "run sudo apt install lsof"'
