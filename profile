@@ -113,7 +113,7 @@ alias mtr='mtr --show-ips --aslookup --report-wide'
 
 # https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
 RED='\033[0;31m'
-# BLUE='\033[0;34m'
+BLUE='\033[0;34m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
@@ -127,3 +127,64 @@ fi
 # command to update the system
 updatesys() { echo -e "${CYAN}Running sudo apt update${NC}" && sudo apt update && echo -e "${CYAN}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${CYAN}Running sudo apt autoremove${NC}" && sudo apt autoremove && checkRebootRequired; }
 
+dotfiles() {
+    local BOLD='\033[1m'
+    local YELLOW='\033[1;33m'
+    local GREEN='\033[0;32m'
+    # local CYAN='\033[0;36m'
+    # local NC='\033[0m'
+
+    echo -e "${BOLD}${CYAN}=== Dotfiles — Available Commands ===${NC}\n"
+
+    echo -e "${YELLOW}${BOLD} Navigation${NC}"
+    echo -e "  ${GREEN}mkcd${NC} <dir>              Create a directory and cd into it"
+    echo -e "  ${GREEN}cd..${NC}                    Alias for cd .."
+    echo -e "  ${GREEN}webdir${NC}                  cd to /var/www/"
+    echo -e "  ${GREEN}nginxlogs${NC}               cd to /var/log/nginx"
+    echo -e "  ${GREEN}nginxconf${NC}               cd to /etc/nginx"
+    echo ""
+
+    echo -e "${YELLOW}${BOLD} Compression${NC}"
+    echo -e "  ${GREEN}compress${NC} <file>         Compress a file with xz (-9, keeps original)"
+    echo -e "  ${GREEN}decompress${NC} <file>       Decompress an xz file"
+    echo -e "  ${GREEN}xzlist${NC} <file>           List information about an xz file"
+    echo -e "  ${GREEN}compressDir${NC} <dir>       Compress a directory to <dir>.tar.xz"
+    echo -e "  ${GREEN}decompressDir${NC} <file>    Extract a tar archive"
+    echo -e "  ${GREEN}tarlist${NC} <file>          List contents of a tar archive"
+    echo ""
+
+    echo -e "${YELLOW}${BOLD} Networking${NC}"
+    echo -e "  ${GREEN}myip${NC}                    Get your public IP address"
+    echo -e "  ${GREEN}myip4${NC}                   Get your public IPv4 address"
+    echo -e "  ${GREEN}myip6${NC}                   Get your public IPv6 address"
+    echo -e "  ${GREEN}checkports${NC}              Show listening ports (requires lsof)"
+    echo -e "  ${GREEN}checkallports${NC}           Show all open ports (requires lsof)"
+    echo -e "  ${GREEN}checkconnections${NC}        Show active outgoing connections"
+    echo -e "  ${GREEN}mtr${NC} <host>              Traceroute with IPs and AS lookup"
+    echo -e "  ${GREEN}http${NC} <code>             Look up an HTTP status code"
+    echo ""
+
+    echo -e "${YELLOW}${BOLD} System${NC}"
+    echo -e "  ${GREEN}updatesys${NC}               apt update + upgrade + autoremove"
+    echo -e "  ${GREEN}checkRebootRequired${NC}     Check if a reboot is pending"
+    echo -e "  ${GREEN}temp${NC}                    Check CPU temperature (Raspberry Pi)"
+    echo -e "  ${GREEN}shred${NC} <file>            Securely delete a file (zeros + unlink)"
+    echo ""
+
+    echo -e "${YELLOW}${BOLD} Web Servers${NC}"
+    echo -e "  ${GREEN}rnginx${NC}                  Test nginx config and restart"
+    echo -e "  ${GREEN}hugostart${NC}               Start Hugo dev server on 192.168.53.53"
+    echo -e "  ${GREEN}runserver${NC}               Start gunicorn on port 9080"
+    echo ""
+
+    echo -e "${YELLOW}${BOLD} Utilities${NC}"
+    echo -e "  ${GREEN}gitcheat${NC}                Fetch the git cheat sheet from cheat.sh"
+    echo -e "  ${GREEN}dpass${NC}                   Generate a strong password via dinopass.com"
+    echo -e "  ${GREEN}dotfiles${NC}                Show this help message"
+    echo ""
+
+    echo -e "${YELLOW}${BOLD} Other stuff${NC}"
+    echo -e "  ${GREEN}declare -f <function>${NC}   Print the definition of function"
+    echo -e "  ${GREEN}type <command>${NC}          Prints the type of command and it's definition"
+    echo ""
+}
