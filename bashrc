@@ -367,6 +367,7 @@ dotfiles() {
     echo ""
 
     echo -e "${YELLOW}${BOLD} Other stuff${NC}"
+    echo -e "  ${GREEN}cle${NC}                     Clear the exit error code from the prompt"
     echo -e "  ${GREEN}exitcodes${NC}               Print the list of exit codes and their meaning"
     echo -e "  ${GREEN}declare -f <function>${NC}   Print the definition of function"
     echo -e "  ${GREEN}type <command>${NC}          Prints the type of command and it's definition"
