@@ -72,6 +72,20 @@ if ! command -v __git_ps1 &>/dev/null; then
     fi
 fi
 
+# Capture exit code before prompt renders
+_last_exit_code=0
+_update_exit_code() {
+  _last_exit_code=$?
+  if [[ $_last_exit_code -ne 0 ]]; then
+    _exit_code_prompt=$'\001\e[38;5;196m\002'"($_last_exit_code)"$'\001\e[0m\002 '
+  else
+    _exit_code_prompt=""
+  fi
+}
+PROMPT_COMMAND="_update_exit_code"
+
+alias cle='_exit_code_prompt="" _last_exit_code=0'
+
 if [ "$color_prompt" = yes ]; then
     # Ubuntu default:	
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
@@ -81,14 +95,14 @@ if [ "$color_prompt" = yes ]; then
     if [ -z "$debian_chroot" ]; then
         # when debian_chroot is not defined
         # https://askubuntu.com/questions/372849/what-does-debian-chrootdebian-chroot-do-in-my-terminal-prompt
-        PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \[\e[38;5;39m\]$(__git_ps1 "(%s)")\[\e[0m\]\n \$ '
+        PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \[\e[38;5;39m\]$(__git_ps1 "(%s)")\[\e[0m\]\n ${_exit_code_prompt}\$ '
         ## PS1='\[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\]\n \$ '
     else 
-    PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \[\e[38;5;39m\]$(__git_ps1 "(%s)")\[\e[0m\]\n \$ '
+    PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \[\e[38;5;39m\]$(__git_ps1 "(%s)")\[\e[0m\]\n ${_exit_code_prompt}\$ '
     ## PS1='${debian_chroot:+($debian_chroot)} \[\e[0;37m\][\[\[\e[0m\e[38;5;39m\]\u\[\e[0;37m\]@\[\e[38;5;39m\]\h\[\e[0;37m\]] \[\e[38;5;11m\]\d \[\e[38;5;10m\]\D{%r} \[\e[38;5;208m\]\w\[\e[0m\] \n \$ '
     fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h \d \D{%r} \w $(__git_ps1 "(%s) ")\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h \d \D{%r} \w $(__git_ps1 "(%s) ")${_exit_code_prompt}\$ '
 fi
 unset color_prompt force_color_prompt
 
@@ -265,6 +279,37 @@ fi
 # command to update the system
 updatesys() { echo -e "${CYAN}Running sudo apt update${NC}" && sudo apt update && echo -e "${CYAN}Running sudo apt upgrade${NC}" && sudo apt upgrade && echo -e "${CYAN}Running sudo apt autoremove${NC}" && sudo apt autoremove && checkRebootRequired; }
 
+exitcodes() {
+  local YELLOW='\033[1;33m'
+  local CYAN='\033[0;36m'
+  local ORANGE='\033[38;5;208m'
+  local GRAY='\033[38;5;249m'
+  local NC='\033[0m'
+
+  echo -e "
+  ${YELLOW}Common Shell Exit Codes${NC}
+
+  ${CYAN}Code  Meaning${NC}
+  ${GRAY}────  ───────────────────────────────────────${NC}
+  ${ORANGE}0${NC}     Success
+  ${ORANGE}1${NC}     Catchall for general errors
+  ${ORANGE}2${NC}     Misuse of shell builtins (according to Bash documentation)
+  ${ORANGE}126${NC}   Command invoked cannot execute
+  ${ORANGE}127${NC}   Command not found
+  ${ORANGE}128${NC}   Invalid exit argument
+  ${ORANGE}130${NC}   Script terminated by Ctrl+C (SIGINT)
+  ${ORANGE}137${NC}   Process killed (SIGKILL, e.g. OOM killer)
+  ${ORANGE}139${NC}   Segmentation fault (SIGSEGV)
+  ${ORANGE}141${NC}   Broken pipe (SIGPIPE)
+  ${ORANGE}143${NC}   Process terminated (SIGTERM)
+
+  ${GRAY}128+N means the process was killed by signal N${NC}
+  ${GRAY}Run 'kill -l' to see all signal numbers in order, starting at 1 (index = the signal number)${NC}
+
+  \033[38;5;51mhttps://tldp.org/LDP/abs/html/exitcodes.html\033[0m
+  "
+}
+
 dotfiles() {
     local BOLD='\033[1m'
     local YELLOW='\033[1;33m'
@@ -322,6 +367,7 @@ dotfiles() {
     echo ""
 
     echo -e "${YELLOW}${BOLD} Other stuff${NC}"
+    echo -e "  ${GREEN}exitcodes${NC}               Print the list of exit codes and their meaning"
     echo -e "  ${GREEN}declare -f <function>${NC}   Print the definition of function"
     echo -e "  ${GREEN}type <command>${NC}          Prints the type of command and it's definition"
     echo ""
