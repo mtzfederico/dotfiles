@@ -51,7 +51,13 @@ if [ -f "/root/.acme.sh/acme.sh.env" ]; then
     ## PATH="$HOME/.local/bin:$PATH"
 fi
 
-#
+# Rust cargo
 if [ -f "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
+fi
+
+# Add to path if directory exists
+if [ -e "$HOME/.lmstudio/bin" ]; then
+    # Added by LM Studio CLI (lms)
+    export PATH="$PATH:$HOME/.lmstudio/bin"
 fi

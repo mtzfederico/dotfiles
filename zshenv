@@ -21,3 +21,9 @@ fi
 if [[ -e "$HOME/.local/bin" ]]; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
+
+# Add to path if directory exists
+if [ -e "$HOME/.lmstudio/bin" ]; then
+    # Added by LM Studio CLI (lms)
+    export PATH="$PATH:$HOME/.lmstudio/bin"
+fi
