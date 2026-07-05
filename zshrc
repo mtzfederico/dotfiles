@@ -105,6 +105,8 @@ alias myip6='drill -Q -6 @ns1.google.com TXT o-o.myaddr.l.google.com'
 
 alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
+alias utc='date -u'
+
 # To load the git cheat sheet
 gitcheat() {
   curl https://cheat.sh/git

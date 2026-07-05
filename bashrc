@@ -249,6 +249,8 @@ alias dpass='curl -w "\n" https://www.dinopass.com/password/strong'
 alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
 alias checkallports='sudo lsof -i -P -n || echo "run sudo apt install lsof"'
 
+alias utc='date -u'
+
 # To check the active outgoing connections
 # https://unix.stackexchange.com/questions/56453/how-can-i-monitor-all-outgoing-requests-connections-from-my-machine
 alias checkconnections='netstat -nputw'
