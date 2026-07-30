@@ -58,14 +58,14 @@ setopt prompt_subst
 if [[ "$(uname -s)" == "Darwin" ]]; then
   # For macOS
   # export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r}%f %F{227}%0~%f$(git_branch_name) %# '
-  export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %r %Z}%f %F{227}%0~%f$(git_branch_name) $(_exit_code_prompt)%# '
+  export PROMPT='%F{10}%n%f%F{15}@%f%F{10}%m%f %F{51}%D{%a %b %d %T %Z}%f %F{227}%0~%f$(git_branch_name) $(_exit_code_prompt)%# '
   # prints why MacOS won't go to sleep
   # https://gist.github.com/tternes/4689521
   # 
   alias whynosleep=pmset -g assertions
 else
   # For other operating systems
-  export PROMPT='%F{249}[%F{39}%n%F{15}@%F{39}%m%F{249}] %F{11}%D{%a %b %d} %F{10}%D{%r %Z} %F{208}%0~%f$(git_branch_name)
+  export PROMPT='%F{249}[%F{39}%n%F{15}@%F{39}%m%F{249}] %F{11}%D{%a %b %d} %F{10}%D{%T %Z} %F{208}%0~%f$(git_branch_name)
  $(_exit_code_prompt)%# '
  fi
 
