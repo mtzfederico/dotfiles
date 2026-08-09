@@ -33,9 +33,9 @@ fi
 
 # Add go/bin, the default GOPATH, to the path.
 # This is where go install puts binaries
-##if [ -d $HOME/go/bin ]; then
-##    export PATH=$PATH:$HOME/go/bin
-##fi
+if [ -d $HOME/go/bin ]; then
+    export PATH=$PATH:$HOME/go/bin
+fi
 
 
 ## Notes on hugo:
