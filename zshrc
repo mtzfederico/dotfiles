@@ -146,3 +146,7 @@ exitcodes() {
 alias checkports='sudo lsof -i -P -n | grep LISTEN || echo "run sudo apt install lsof"'
 
 alias checkallports='sudo lsof -i -P -n || echo "run sudo apt install lsof"'
+
+if (( $+commands[rbenv] )); then
+  eval "$(rbenv init - zsh)"
+fi
