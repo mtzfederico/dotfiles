@@ -251,6 +251,8 @@ alias checkallports='sudo lsof -i -P -n || echo "run sudo apt install lsof"'
 
 alias utc='date -u && date +%z'
 
+alias wg-log='wg-log-report | glow -w 200'
+
 # To check the active outgoing connections
 # https://unix.stackexchange.com/questions/56453/how-can-i-monitor-all-outgoing-requests-connections-from-my-machine
 alias checkconnections='netstat -nputw'
