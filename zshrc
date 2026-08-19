@@ -107,6 +107,8 @@ alias get_idf='. $HOME/esp/esp-idf/export.sh'
 
 alias utc='date -u && date +%z'
 
+alias wg-log='wg-log-report | glow -w 200'
+
 # To load the git cheat sheet
 gitcheat() {
   curl https://cheat.sh/git
